@@ -48,10 +48,6 @@ local function sendMessage(text)
 end
 
 local function onMessageReceived(message, sender)
-    if sender and sender == LocalPlayer then
-        return
-    end
-    
     local Words = splitL(message)
     local SplittedFW = splitW(Words[1])
     if SplittedFW[1] == Hotkey then
