@@ -72,13 +72,10 @@ local function onMessageReceived(message, sender)
                 end
             end
         else
-            local player = Players:FindFirstChild(playerName)
-            if player then
-                if not table.find(Whitelist, player.Name) then
+            for _, player in ipairs(Players:GetPlayers()) do
+                if not table.find(Whitelist, player.Name) and player.Name == Words[2] then
                     table.insert(Whitelist, player.Name)
                 end
-            else
-                print("Player doesnt exist")
             end
         end
     elseif Command == "blacklist" then
