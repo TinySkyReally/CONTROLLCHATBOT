@@ -4,6 +4,8 @@ local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TextChatService = game:GetService("TextChatService")
 local LocalPlayer = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
 
 local function splitL(message)
     local words = {}
@@ -42,6 +44,9 @@ local function onMessageReceived(message, sender)
     elseif Command == "say" then
         table.remove(Words, 1)
         sendMessage("[Tiny Control Bot]: "..table.concat(Words, " "))
+    elseif Command == "jump" then
+        humanoid:ChangeState(Enum.HumanoidStateType.Physics)
+        humanoid.Jump = true
     end
 end
 
