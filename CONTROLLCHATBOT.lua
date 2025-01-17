@@ -1,3 +1,5 @@
+local version = "0.0.4"
+
 local Hotkey = "."
 local Whitelist = {}
 local Players = game:GetService("Players")
@@ -114,4 +116,5 @@ else
     warn("No chat system detected!")
 end
 
-sendMessage("[Tiny Control Bot]: CHAT BOT LOADED IN GAME!")
+sendMessage("[Tiny Control Bot]: Chat bot loaded into game!")
+sendMessage("[Tiny Control Bot]: Version "..version.." .")
