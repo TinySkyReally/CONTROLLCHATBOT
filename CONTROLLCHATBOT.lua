@@ -4,21 +4,6 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TextChatService = game:GetService("TextChatService")
 local LocalPlayer = Players.LocalPlayer
 
-local function splitW(text)
-    local firstLetters = {} 
-    local remainingParts = {} 
-
-    for word in string.gmatch(text, "%S+") do
-        local firstLetter = string.sub(word, 1, 1) 
-        local remainingPart = string.sub(word, 2)
-
-        table.insert(firstLetters, firstLetter)
-        table.insert(remainingParts, remainingPart)
-    end
-
-    return firstLetters, remainingParts
-end
-
 local function splitL(message)
     local words = {}
     for word in string.gmatch(message, "%S+") do
@@ -48,17 +33,14 @@ local function sendMessage(text)
 end
 
 local function onMessageReceived(message, sender)
-    print(message)
+    if not string.sub(message, 1, 1) == Hotkey then return end
     local Words = splitL(message)
-    local SplittedFW = splitW(Words[1])
-    if SplittedFW[1] == Hotkey then
-        Command = SplittedFW[2]
-        if Command == "hotkey" then
-            Hotkey = Words[2]
-        elseif Command == "say" then
-            table.remove(Words, 1)
-            sendMessage(table.concat(Words, " "))
-        end
+    Command = string.sub(Words[1], 2)
+    if Command == "hotkey" then
+        Hotkey = Words[2]
+    elseif Command == "say" then
+        table.remove(Words, 1)
+        sendMessage(table.concat(Words, " "))
     end
 end
 
