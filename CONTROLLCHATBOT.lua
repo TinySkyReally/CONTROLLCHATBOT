@@ -36,10 +36,8 @@ local function sendMessage(text)
 end
 
 local function onMessageReceived(message, sender)
-    if not sender == LocalPlayer then
-        if not table.find(Whitelist, sender.Name) then
-            return
-        end
+    if sender ~= LocalPlayer and not table.find(Whitelist, sender.Name) then
+        return
     end
     print(string.sub(message, 1, 1))
     if not (string.sub(message, 1, 1) == Hotkey) then
