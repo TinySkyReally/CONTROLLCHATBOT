@@ -1,4 +1,5 @@
 local Hotkey = "."
+local Whitelist = {}
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TextChatService = game:GetService("TextChatService")
@@ -40,7 +41,7 @@ local function onMessageReceived(message, sender)
         Hotkey = Words[2]
     elseif Command == "say" then
         table.remove(Words, 1)
-        sendMessage(table.concat(Words, " "))
+        sendMessage("[Tiny Control Bot]: "..table.concat(Words, " "))
     end
 end
 
@@ -70,4 +71,4 @@ else
     warn("No chat system detected!")
 end
 
-sendMessage("CHAT BOT LOADED IN GAME!")
+sendMessage("[Tiny Control Bot]: CHAT BOT LOADED IN GAME!")
