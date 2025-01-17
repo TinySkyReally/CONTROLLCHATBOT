@@ -1,4 +1,4 @@
-local version = "0.0.4.8"
+local version = "0.0.4.9"
 
 local Hotkey = "."
 local Whitelist = {}
@@ -90,7 +90,7 @@ local function onMessageReceived(message, sender)
     elseif Command == "reset" then
         local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
         if humanoidRootPart then
-            humanoidRootPart.CFrame = CFrame.new(1000000, -1000000, 1000000)
+            humanoidRootPart.CFrame = CFrame.new(0, -500, 0)
         end
     end
 end
