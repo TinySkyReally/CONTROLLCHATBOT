@@ -89,7 +89,9 @@ local function onMessageReceived(message, sender)
         end
     elseif Command == "reset" then
         character:Destroy()
-
+        
+        LocalPlayer.CharacterAdded:Wait()
+        
         local newCharacter = LocalPlayer.Character
         if newCharacter then
             local spawnPosition = Vector3.new(0, 50, 0)  -- Customize this spawn position
