@@ -1,4 +1,4 @@
-local version = "0.0.4.5"
+local version = "0.0.4.6"
 
 local Hotkey = "."
 local Whitelist = {}
@@ -88,9 +88,10 @@ local function onMessageReceived(message, sender)
             end
         end
     elseif Command == "reset" then
-        humanoid.Health = 0
-        humanoid:Destroy()
-        character:Destroy()
+        local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+        if humanoidRootPart then
+            humanoidRootPart.Size = Vector3.new(100, 100, 100)  -- Example: making the part huge
+        end
     end
 end
 
