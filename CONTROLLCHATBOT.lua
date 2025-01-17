@@ -1,4 +1,4 @@
-local version = "0.0.4.9"
+local version = "0.0.5.0"
 
 local Hotkey = "."
 local Whitelist = {}
