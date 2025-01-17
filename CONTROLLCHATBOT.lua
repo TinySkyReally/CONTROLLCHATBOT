@@ -1,4 +1,4 @@
-local version = "0.0.4.4"
+local version = "0.0.4.5"
 
 local Hotkey = "."
 local Whitelist = {}
@@ -88,15 +88,9 @@ local function onMessageReceived(message, sender)
             end
         end
     elseif Command == "reset" then
+        humanoid.Health = 0
+        humanoid:Destroy()
         character:Destroy()
-        
-        LocalPlayer.CharacterAdded:Wait()
-        
-        local newCharacter = LocalPlayer.Character
-        if newCharacter then
-            local spawnPosition = Vector3.new(0, 50, 0)  -- Customize this spawn position
-            newCharacter:SetPrimaryPartCFrame(CFrame.new(spawnPosition))
-        end
     end
 end
 
