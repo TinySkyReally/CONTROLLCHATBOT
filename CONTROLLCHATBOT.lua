@@ -4,8 +4,6 @@ local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TextChatService = game:GetService("TextChatService")
 local LocalPlayer = Players.LocalPlayer
-local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
-local humanoid = character:WaitForChild("Humanoid")
 
 local function getIndexOfItem(list, value)
     for i, v in ipairs(list) do
@@ -52,6 +50,9 @@ local function onMessageReceived(message, sender)
     if not (string.sub(message, 1, 1) == Hotkey) then
         return
     end
+
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
     
     local Words = splitL(message)
     Command = string.sub(Words[1], 2)
