@@ -80,8 +80,12 @@ local function onMessageReceived(message, sender)
             end
         end
     elseif Command == "blacklist" then
-        if table.find(Whitelist, Words[2]) then
-            table.remove(Whitelist, getIndexOfItem(Whitelist, Words[2]))
+        if Words[2] == "all" then
+            Whitelist = {}
+        else
+            if table.find(Whitelist, Words[2]) then
+                table.remove(Whitelist, getIndexOfItem(Whitelist, Words[2]))
+            end
         end
     end
 end
