@@ -50,8 +50,11 @@ end
 local function onMessageReceived(message, sender)
     local Words = splitL(message)
     local SplittedFW = splitW(Words[1])
+    print(Words)
+    print(SplittedFW)
     if SplittedFW[1] == Hotkey then
         Command = SplittedFW[2]
+        print(Command)
         if Command == "hotkey" then
             Hotkey = Words[2]
         elseif Command == "say" then
