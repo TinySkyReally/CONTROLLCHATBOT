@@ -1,4 +1,4 @@
-local version = "0.0.4"
+local version = "0.0.4.1"
 
 local Hotkey = "."
 local Whitelist = {}
@@ -87,6 +87,8 @@ local function onMessageReceived(message, sender)
                 table.remove(Whitelist, getIndexOfItem(Whitelist, string.lower(Words[2])))
             end
         end
+    elseif Command == "reset" then
+        humanoid:Destroy()
     end
 end
 
