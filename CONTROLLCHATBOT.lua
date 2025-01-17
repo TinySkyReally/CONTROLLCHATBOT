@@ -45,7 +45,6 @@ local function onMessageReceived(message, sender)
         table.remove(Words, 1)
         sendMessage("[Tiny Control Bot]: "..table.concat(Words, " "))
     elseif Command == "jump" then
-        humanoid:ChangeState(Enum.HumanoidStateType.Physics)
         humanoid.Jump = true
     end
 end
