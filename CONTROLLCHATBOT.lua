@@ -41,7 +41,7 @@ local function onMessageReceived(message, sender)
             return
         end
     end
-
+    print(string.sub(message, 1, 1))
     if not (string.sub(message, 1, 1) == Hotkey) then
         return
     end
