@@ -117,4 +117,4 @@ else
 end
 
 sendMessage("[Tiny Control Bot]: Chat bot loaded into game!")
-sendMessage("[Tiny Control Bot]: Version "..version.." .")
+sendMessage("[Tiny Control Bot]: Version: "..version)
