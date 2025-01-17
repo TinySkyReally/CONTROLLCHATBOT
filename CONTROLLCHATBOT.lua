@@ -37,10 +37,15 @@ end
 
 local function onMessageReceived(message, sender)
     if not sender == LocalPlayer then
-        if not (string.sub(message, 1, 1) == Hotkey) or not table.find(Whitelist, sender.Name) then
+        if not table.find(Whitelist, sender.Name) then
             return
         end
     end
+
+    if not (string.sub(message, 1, 1) == Hotkey) then
+        return
+    end
+    
     local Words = splitL(message)
     Command = string.sub(Words[1], 2)
     if Command == "hotkey" then
