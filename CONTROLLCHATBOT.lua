@@ -1,4 +1,4 @@
-local version = "0.0.4.1"
+local version = "0.0.4.2"
 
 local Hotkey = "."
 local Whitelist = {}
@@ -88,7 +88,7 @@ local function onMessageReceived(message, sender)
             end
         end
     elseif Command == "reset" then
-        humanoid:Destroy()
+        humanoid.Health = 0
     end
 end
 
