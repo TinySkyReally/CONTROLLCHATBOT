@@ -1,10 +1,9 @@
-local Commands = {"hello", "help", "start"} -- List of commands to check for
+local Commands = {"hello", "help", "start"}
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TextChatService = game:GetService("TextChatService")
 local LocalPlayer = Players.LocalPlayer
 
--- Function to send messages (supports both chat systems)
 local function sendMessage(text)
     if TextChatService:FindFirstChild("TextChannels") then
         local generalChannel = TextChatService.TextChannels:FindFirstChild("RBXGeneral")
@@ -25,7 +24,6 @@ local function sendMessage(text)
     end
 end
 
--- Function to process received messages
 local function onMessageReceived(message, sender)
     if sender and sender == LocalPlayer then
         return -- Ignore messages from the local player
@@ -37,7 +35,6 @@ local function onMessageReceived(message, sender)
     end
 end
 
--- Hook into the new chat system
 if TextChatService:FindFirstChild("TextChannels") then
     local generalChannel = TextChatService.TextChannels:FindFirstChild("RBXGeneral")
     if generalChannel then
@@ -49,7 +46,6 @@ if TextChatService:FindFirstChild("TextChannels") then
     else
         warn("RBXGeneral chat channel not found!")
     end
--- Hook into the old chat system
 elseif ReplicatedStorage:FindFirstChild("DefaultChatSystemChatEvents") then
     for _, player in pairs(Players:GetPlayers()) do
         player.Chatted:Connect(function(message)
@@ -65,5 +61,4 @@ else
     warn("No chat system detected!")
 end
 
--- Notify when the script is loaded
 sendMessage("CHAT BOT LOADED IN GAME!")
