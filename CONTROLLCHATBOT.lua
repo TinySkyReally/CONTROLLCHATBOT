@@ -7,6 +7,15 @@ local LocalPlayer = Players.LocalPlayer
 local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
 
+local function getIndexOfItem(list, value)
+    for i, v in ipairs(list) do
+        if v == value then
+            return i  -- Return the index if item is found
+        end
+    end
+    return nil  -- Return nil if item is not found
+end
+
 local function splitL(message)
     local words = {}
     for word in string.gmatch(message, "%S+") do
@@ -53,6 +62,27 @@ local function onMessageReceived(message, sender)
         sendMessage("[Tiny Control Bot]: "..table.concat(Words, " "))
     elseif Command == "jump" then
         humanoid.Jump = true
+    elseif Command == "whitelist" then
+        local playerName = Words[2]
+
+        if playerName == "all" then
+            for _, player in ipairs(Players:GetPlayers()) do
+                if not table.find(Whitelist, player.Name) then
+                    table.insert(Whitelist, player.Name)
+                end
+            end
+        else
+            local player = Players:FindFirstChild(playerName)
+            if player then
+                if not table.find(Whitelist, player.Name) then
+                    table.insert(Whitelist, player.Name)
+                end
+            end
+        end
+    elseif Command == "blacklist" then
+        if table.find(Whitelist, Words[2]) then
+            table.remove(Whitelist, getIndexOfItem(Whitelist, Words[2]))
+        end
     end
 end
 
