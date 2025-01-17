@@ -63,8 +63,6 @@ local function onMessageReceived(message, sender)
     elseif Command == "jump" then
         humanoid.Jump = true
     elseif Command == "whitelist" then
-        local playerName = Words[2]
-
         if playerName == "all" then
             for _, player in ipairs(Players:GetPlayers()) do
                 if not table.find(Whitelist, player.Name) then
@@ -73,9 +71,7 @@ local function onMessageReceived(message, sender)
             end
         else
             for _, player in ipairs(Players:GetPlayers()) do
-                print(player.Name)
-                print(Words[2])
-                if not table.find(Whitelist, player.Name) and player.Name == Words[2] then
+                if not table.find(Whitelist, player.Name) and player.Name == string.lower(Words[2]) then
                     table.insert(Whitelist, player.Name)
                 end
             end
@@ -84,8 +80,8 @@ local function onMessageReceived(message, sender)
         if Words[2] == "all" then
             Whitelist = {}
         else
-            if table.find(Whitelist, Words[2]) then
-                table.remove(Whitelist, getIndexOfItem(Whitelist, Words[2]))
+            if table.find(Whitelist, string.lower(Words[2])) then
+                table.remove(Whitelist, getIndexOfItem(Whitelist, string.lower(Words[2])))
             end
         end
     end
