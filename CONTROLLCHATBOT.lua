@@ -73,6 +73,8 @@ local function onMessageReceived(message, sender)
             end
         else
             for _, player in ipairs(Players:GetPlayers()) do
+                print(player.Name)
+                print(Words[2])
                 if not table.find(Whitelist, player.Name) and player.Name == Words[2] then
                     table.insert(Whitelist, player.Name)
                 end
