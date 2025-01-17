@@ -77,6 +77,8 @@ local function onMessageReceived(message, sender)
                 if not table.find(Whitelist, player.Name) then
                     table.insert(Whitelist, player.Name)
                 end
+            else
+                print("Player doesnt exist")
             end
         end
     elseif Command == "blacklist" then
