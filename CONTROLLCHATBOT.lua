@@ -90,7 +90,7 @@ local function onMessageReceived(message, sender)
     elseif Command == "reset" then
         local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
         if humanoidRootPart then
-            humanoidRootPart.CFrame = CFrame.new(0, -500, 0)
+            humanoidRootPart.CFrame = CFrame.new(0, -1, 0)
         end
     end
 end
