@@ -1,6 +1,6 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TinySkyReally/CONTROLLCHATBOT/refs/heads/main/Version.lua"))()
 
-local version = "0.0.35 Debbuger"
+local version = "0.0.36"
 local Latest
 
 local Hotkey = "."
@@ -79,11 +79,10 @@ local function sendCommandList()
 end
 
 local function onMessageReceived(message, sender)
-    print(sender.Name..": "..message)
-    if sender ~= LocalPlayer then
-        if not table.find(Whitelist, sender.Name) then
-            return
-        end
+    if sender ~= LocalPlayer and not table.find(Whitelist, sender.Name) then
+        print(sender.Name)
+        print(Whitelist)
+        return
     end
 
     if not (string.sub(message, 1, 1) == Hotkey) then
