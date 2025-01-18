@@ -1,6 +1,6 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TinySkyReally/CONTROLLCHATBOT/refs/heads/main/Version.lua"))()
 
-local version = "0.0.26"
+local version = "0.0.27"
 local Latest
 
 local Hotkey = "."
@@ -139,7 +139,7 @@ local function onMessageReceived(message, sender)
             end
         end
     elseif Command == "cmds" then
-        sendmessage("")
+        sendCommandList()
     end
 end
 
