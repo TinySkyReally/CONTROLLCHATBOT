@@ -94,8 +94,10 @@ end
 
 
 local function onMessageReceived(message, sender)
-    if sender ~= LocalPlayer and not table.find(Whitelist, string.lower(sender.Name)) or not table.find(Whitelist, string.lower(sender.DisplayName)) then
-        return
+    if sender ~= LocalPlayer and not table.find(Whitelist, string.lower(sender.Name)) then
+        if not table.find(Whitelist, string.lower(sender.DisplayName)) then
+            return
+        end
     end
 
     if not (string.sub(message, 1, 1) == Hotkey) then
