@@ -6,7 +6,7 @@ local Latest
 local TeleportService = game:GetService("TeleportService")
 local Name = "Tiny Control Bot"
 local Hotkey = "."
-local Whitelist = {}
+local Whitelist = {WakeMeUp, TinyControllBot}
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TextChatService = game:GetService("TextChatService")
