@@ -1,6 +1,6 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TinySkyReally/CONTROLLCHATBOT/refs/heads/main/Version.lua"))()
 
-local version = "0.0.42"
+local version = "0.0.43"
 local Latest
 
 local Hotkey = "."
@@ -109,7 +109,11 @@ local function onMessageReceived(message, sender)
         if sender ~= LocalPlayer then return end
         if Words[2] == "all" then
             for _, player in ipairs(Players:GetPlayers()) do
-                table.insert(Whitelist, string.lower(player.Name))
+                if player and player.Name then
+                    table.insert(Whitelist, string.lower(player.Name))
+                else
+                    warn("Invalid player detected while adding to whitelist.")
+                end
             end
             print("Whitelist:", table.concat(Whitelist, ", "))
         else
