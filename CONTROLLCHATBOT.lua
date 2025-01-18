@@ -1,8 +1,9 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TinySkyReally/CONTROLLCHATBOT/refs/heads/main/Version.lua"))()
 
-local version = "0.0.47"
+local version = "0.0.48"
 local Latest
 
+local Name = "Tiny Control Bot"
 local Hotkey = "."
 local Whitelist = {}
 local Players = game:GetService("Players")
@@ -70,7 +71,7 @@ local function sendCommandList(pick)
     local controlCommands = "Control Character Commands: jump - Make the character jump, sit - Makes player sit, reset - Reset the player's position, walkto [player] - Make the character walk to a player, bring - Teleports bot to you, rotate [degree] - sets rotation, emote [emote] - uses emote"
     local chatCommands = "Chat Commands: hotkey [key] - Change the hotkey for commands, say [message] - Make the bot say something in chat, cmds - Show the list of available commands"
     local whitelistCommands = "Whitelist Commands: whitelist [player] - Add a player to the whitelist, whitelist all - Add all players to the whitelist, blacklist [player] - Remove a player from the whitelist, blacklist all - Clear the entire whitelist"
-    local utilityCommands = "Utility Commands: random [minnumber] [maxnumber] - Sends random number"
+    local utilityCommands = "Utility Commands: random [minnumber] [maxnumber] - Sends random number, name [Name] - renames bot"
 
     local commands = {
         control = controlCommands,
@@ -88,8 +89,8 @@ local function sendCommandList(pick)
         end
         sendMessage(message)
     else
-        sendMessage("[Tiny Control Bot]: pick control, chat, whitelist, utility.")
-        sendMessage("[Tiny Control Bot]: say .cmds [Your choice]")
+        sendMessage("["..Name.."]: pick control, chat, whitelist, utility.")
+        sendMessage("["..Name.."]: say .cmds [Your choice]")
     end
 end
 
@@ -116,7 +117,7 @@ local function onMessageReceived(message, sender)
         Hotkey = Words[2]
     elseif Command == "say" then
         table.remove(Words, 1)
-        sendMessage("[Tiny Control Bot]: "..table.concat(Words, " "))
+        sendMessage("["..Name.."]: "..table.concat(Words, " "))
     elseif Command == "jump" then
         humanoid.Jump = true
     elseif Command == "whitelist" then
@@ -160,13 +161,17 @@ local function onMessageReceived(message, sender)
     elseif Command == "sit" then
         humanoid.Sit = true
     elseif Command == "random" then
-        sendMessage("[Tiny Control Bot]: "..math.random(tonumber(Words[2]), tonumber(Words[3])))
+        sendMessage("["..Name.."]: "..math.random(tonumber(Words[2]), tonumber(Words[3])))
     elseif Command == "rotate" then
         local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
         local targetRotation = CFrame.new(humanoidRootPart.Position) * CFrame.Angles(0, math.rad(Words[2]), 0)
         humanoidRootPart.CFrame = targetRotation
     elseif Command == "emote" then
         sendMessage("/e "..Words[2])
+    elseif Command == "name" then
+        if Words[2] ~= "" then
+            Name = Words[2]
+        end
     end
 end
 
@@ -196,10 +201,10 @@ else
     warn("No chat system detected!")
 end
 
-sendMessage("[Tiny Control Bot]: Chat bot loaded into game!")
+sendMessage("["..Name.."]: Chat bot loaded into game!")
 if Latest then
-    sendMessage("[Tiny Control Bot]: Version: "..version.." Latest!")
+    sendMessage("["..Name.."]: Version: "..version.." Latest!")
 else
-    sendMessage("[Tiny Control Bot]: Version: "..version.." Outdated!")
+    sendMessage("["..Name.."]: Version: "..version.." Outdated!")
 end
-sendMessage("[Tiny Control Bot]: Use .cmds")
+sendMessage("["..Name.."]: Use .cmds")
