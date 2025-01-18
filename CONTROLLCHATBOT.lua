@@ -1,6 +1,6 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TinySkyReally/CONTROLLCHATBOT/refs/heads/main/Version.lua"))()
 
-local version = "0.0.39"
+local version = "0.0.40"
 local Latest
 
 local Hotkey = "."
@@ -107,9 +107,11 @@ local function onMessageReceived(message, sender)
                     table.insert(Whitelist, string.lower(player.Name))
                 end
             end
+            print("Whitelist:", table.concat(Whitelist, ", "))
         else
             if not table.find(Whitelist, string.lower(player.Name)) then
                 table.insert(Whitelist, string.lower(player.Name))
+                print("Whitelist:", table.concat(Whitelist, ", "))
             end
         end
     elseif Command == "blacklist" then
