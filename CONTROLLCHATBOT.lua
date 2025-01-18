@@ -1,6 +1,6 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TinySkyReally/CONTROLLCHATBOT/refs/heads/main/Version.lua"))()
 
-local version = "0.0.32"
+local version = "0.0.33"
 local Latest
 
 local Hotkey = "."
@@ -98,7 +98,7 @@ local function onMessageReceived(message, sender)
     elseif Command == "jump" then
         humanoid.Jump = true
     elseif Command == "whitelist" then
-        if playerName == "all" then
+        if Words[2] == "all" then
             for _, player in ipairs(Players:GetPlayers()) do
                 if not table.find(Whitelist, string.lower(player.Name)) then
                     table.insert(Whitelist, string.lower(player.Name))
