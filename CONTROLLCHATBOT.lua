@@ -18,7 +18,6 @@ end
 
 local function sendCommandList()
     local commands = {
-        "_help - Show this command list_",
         ".hotkey [key] - Change the hotkey for commands",
         ".say [message] - Make the bot say something in chat",
         ".jump - Make the character jump",
@@ -31,7 +30,7 @@ local function sendCommandList()
         ".cmds - Show the list of available commands"
     }
 
-    local commandMessage = "Available Commands:\n" .. table.concat(commands, "\n")
+    local commandMessage = "Available Commands: " .. table.concat(commands, ", ")
 
     sendMessage(commandMessage)
 end
