@@ -1,4 +1,4 @@
-local version = "0.0.5.21"
+local version = "0.0.24"
 
 local Hotkey = "."
 local Whitelist = {}
@@ -6,6 +6,16 @@ local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TextChatService = game:GetService("TextChatService")
 local LocalPlayer = Players.LocalPlayer
+
+local function WalkToPart(targetPart)
+    local character = LocalPlayer.Character
+    if character then
+        local humanoid = character:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            humanoid:MoveTo(targetPart.Position)
+        end
+    end
+end
 
 local function getIndexOfItem(list, value)
     for i, v in ipairs(list) do
@@ -91,6 +101,13 @@ local function onMessageReceived(message, sender)
         local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
         if humanoidRootPart then
             humanoidRootPart.CFrame = CFrame.new(0, -70, 0)
+        end
+    elseif Command == "walkto" then
+        local TargetPlayer = string.lower(Words[2])
+        for _, player in ipairs(Players:GetPlayers()) do
+            if player.Name == TargetPlayer then
+                WalkToPart(player.Character.HumanoidRootPart)
+            end
         end
     end
 end
