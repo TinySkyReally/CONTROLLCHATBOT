@@ -1,7 +1,8 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TinySkyReally/CONTROLLCHATBOT/refs/heads/main/Version.lua"))()
 
-local version = "0.0.33"
+local version = "0.0.34"
 local Latest
+local AutoWhitelist = _G.AutoWhitelist
 
 local Hotkey = "."
 local Whitelist = {}
@@ -77,8 +78,10 @@ local function sendCommandList()
 end
 
 local function onMessageReceived(message, sender)
-    if sender ~= LocalPlayer and not table.find(Whitelist, sender.Name) then
-        return
+    if sender ~= LocalPlayer or not table.find(AutoWhitelist, sender.Name) then
+        if not table.find(Whitelist, sender.Name) then
+            return
+        end
     end
 
     if not (string.sub(message, 1, 1) == Hotkey) then
