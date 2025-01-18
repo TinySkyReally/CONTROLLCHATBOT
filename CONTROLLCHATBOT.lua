@@ -1,4 +1,4 @@
-local version = "0.0.24"
+local version = "0.0.25"
 
 local Hotkey = "."
 local Whitelist = {}
@@ -105,7 +105,7 @@ local function onMessageReceived(message, sender)
     elseif Command == "walkto" then
         local TargetPlayer = string.lower(Words[2])
         for _, player in ipairs(Players:GetPlayers()) do
-            if player.Name == TargetPlayer then
+            if string.lower(player.Name) == TargetPlayer then
                 WalkToPart(player.Character.HumanoidRootPart)
             end
         end
