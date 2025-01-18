@@ -79,6 +79,7 @@ local function sendCommandList()
 end
 
 local function onMessageReceived(message, sender)
+    print(sender.Name..": "..message)
     if sender ~= LocalPlayer then
         if not table.find(Whitelist, sender.Name) then
             return
