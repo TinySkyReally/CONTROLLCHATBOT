@@ -105,9 +105,7 @@ end
 local function onMessageReceived(message, sender)
     if sender ~= LocalPlayer and not table.find(Whitelist, string.lower(sender.Name)) then
         if not table.find(Whitelist, string.lower(sender.DisplayName)) then
-            if not table.find(whitelisted, sender.Name) then
-                return
-            end
+            return
         end
     end
 
