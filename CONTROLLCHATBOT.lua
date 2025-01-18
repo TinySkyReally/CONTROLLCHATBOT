@@ -1,6 +1,6 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TinySkyReally/CONTROLLCHATBOT/refs/heads/main/Version.lua"))()
 
-local version = "0.0.41"
+local version = "0.0.42"
 local Latest
 
 local Hotkey = "."
@@ -66,21 +66,22 @@ local function sendMessage(text)
     end
 end
 
-local function sendCommandList(number)
-    local commands = "Available Commands: hotkey [key] - Change the hotkey for commands, say [message] - Make the bot say something in chat, jump - Make the character jump, bring - Teleports bot to you"
-    local secondcommands = "whitelist [player] - Add a player to the whitelist, whitelist all - Add all players to the whitelist, blacklist [player] - Remove a player from the whitelist, sit - Makes player sit"
-    local thirdcommands = "blacklist all - Clear the entire whitelist, reset - Reset the player's position, walkto [player] - Make the character walk to a player, cmds - Show the list of available commands"
-    local fourthcommands = "random [minnumber] [maxnumber] - Sends random number"
-    if number == "1" then
-        sendMessage(commands)
-    elseif number == "2" then
-        sendMessage(secondcommands)
-    elseif number == "3" then
-        sendMessage(thirdcommands)
-    elseif number == "4" then
-        sendMessage(fourthcommands)
+local function sendCommandList(pick)
+    local controlCommands = "Control Character Commands: jump - Make the character jump, sit - Makes player sit, reset - Reset the player's position, walkto [player] - Make the character walk to a player, bring - Teleports bot to you"
+    local chatCommands = "Chat Commands: hotkey [key] - Change the hotkey for commands, say [message] - Make the bot say something in chat, cmds - Show the list of available commands"
+    local whitelistCommands = "Whitelist Commands: whitelist [player] - Add a player to the whitelist, whitelist all - Add all players to the whitelist, blacklist [player] - Remove a player from the whitelist, blacklist all - Clear the entire whitelist"
+    local utilityCommands = "Utility Commands: random [minnumber] [maxnumber] - Sends random number"
+
+    if pick == "control" then
+        sendMessage(controlCommands)
+    elseif pick == "chat" then
+        sendMessage(chatCommands)
+    elseif pick == "whitelist" then
+        sendMessage(whitelistCommands)
+    elseif pick == "utility" then
+        sendMessage(utilityCommands)
     else
-        sendMessage("[Tiny Control Bot]: pick range from 1 to 4")
+        sendMessage("[Tiny Control Bot]: pick control, chat, whitelist, utility.")
 end
 
 local function onMessageReceived(message, sender)
@@ -135,7 +136,7 @@ local function onMessageReceived(message, sender)
             end
         end
     elseif Command == "cmds" then
-        sendCommandList()
+        sendCommandList(Words[2])
     elseif Command == "bring" then
         character.HumanoidRootPart.CFrame = CFrame.new(sender.Character.HumanoidRootPart.Position)
     elseif Command == "sit" then
