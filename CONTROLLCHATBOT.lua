@@ -16,6 +16,26 @@ else
     Latest = false
 end
 
+local function sendCommandList()
+    local commands = {
+        "_help - Show this command list_",
+        ".hotkey [key] - Change the hotkey for commands",
+        ".say [message] - Make the bot say something in chat",
+        ".jump - Make the character jump",
+        ".whitelist [player] - Add a player to the whitelist",
+        ".whitelist all - Add all players to the whitelist",
+        ".blacklist [player] - Remove a player from the whitelist",
+        ".blacklist all - Clear the entire whitelist",
+        ".reset - Reset the player's position",
+        ".walkto [player] - Make the character walk to a player",
+        ".cmds - Show the list of available commands"
+    }
+
+    local commandMessage = "Available Commands:\n" .. table.concat(commands, "\n")
+
+    sendMessage(commandMessage)
+end
+
 local function WalkToPart(targetPart)
     local character = LocalPlayer.Character
     if character then
@@ -118,6 +138,8 @@ local function onMessageReceived(message, sender)
                 WalkToPart(player.Character.HumanoidRootPart)
             end
         end
+    elseif Command == "cmds" then
+        sendmessage("")
     end
 end
 
