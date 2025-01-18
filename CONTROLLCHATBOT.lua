@@ -199,3 +199,4 @@ if Latest then
 else
     sendMessage("[Tiny Control Bot]: Version: "..version.." Outdated!")
 end
+sendMessage("[Tiny Control Bot]: Use .cmds")
