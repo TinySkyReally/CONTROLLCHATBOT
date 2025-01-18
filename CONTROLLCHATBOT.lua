@@ -19,16 +19,6 @@ else
     print("Outdated")
 end
 
-local function sendCommandList()
-    local commands = "Available Commands: hotkey [key] - Change the hotkey for commands, say [message] - Make the bot say something in chat, jump - Make the character jump, whitelist [player] - Add a player to the whitelist"
-    local secondcommands = "blacklist [player] - Remove a player from the whitelist, blacklist all - Clear the entire whitelist, reset - Reset the player's position, walkto [player] - Make the character walk to a player, cmds - Show the list of available commands"
-    local thirdcommands = "whitelist all - Add all players to the whitelist"
-    
-    sendMessage(commands)
-    sendMessage(secondcommands)
-    sendMessage(thirdcommands)
-end
-
 local function WalkToPart(targetPart)
     local character = LocalPlayer.Character
     if character then
@@ -74,6 +64,16 @@ local function sendMessage(text)
     else
         warn("No supported chat system found!")
     end
+end
+
+local function sendCommandList()
+    local commands = "Available Commands: hotkey [key] - Change the hotkey for commands, say [message] - Make the bot say something in chat, jump - Make the character jump, whitelist [player] - Add a player to the whitelist"
+    local secondcommands = "blacklist [player] - Remove a player from the whitelist, blacklist all - Clear the entire whitelist, reset - Reset the player's position, walkto [player] - Make the character walk to a player, cmds - Show the list of available commands"
+    local thirdcommands = "whitelist all - Add all players to the whitelist"
+    
+    sendMessage(commands)
+    sendMessage(secondcommands)
+    sendMessage(thirdcommands)
 end
 
 local function onMessageReceived(message, sender)
