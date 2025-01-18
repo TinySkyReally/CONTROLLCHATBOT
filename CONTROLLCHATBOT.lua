@@ -75,6 +75,7 @@ local function sendCommandList()
     sendMessage(commands)
     sendMessage(secondcommands)
     sendMessage(thirdcommands)
+    sendMessage(fourthcommands)
 end
 
 local function onMessageReceived(message, sender)
