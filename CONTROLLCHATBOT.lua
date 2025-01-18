@@ -1,8 +1,9 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TinySkyReally/CONTROLLCHATBOT/refs/heads/main/Version.lua"))()
 
-local version = "0.0.48"
+local version = "0.0.49"
 local Latest
 
+local TeleportService = game:GetService("TeleportService")
 local Name = "Tiny Control Bot"
 local Hotkey = "."
 local Whitelist = {}
@@ -18,6 +19,12 @@ if LatestVersion == version then
 else
     Latest = false
     print("Outdated")
+end
+
+local function rejoinGame()
+    local placeId = game.PlaceId
+    local serverId = game.JobId
+    TeleportService:TeleportToPlaceInstance(placeId, serverId, LocalPlayer)
 end
 
 local function WalkToPart(targetPart)
@@ -68,10 +75,10 @@ local function sendMessage(text)
 end
 
 local function sendCommandList(pick)
-    local controlCommands = "Control Character Commands: jump - Make the character jump, sit - Makes player sit, reset - Reset the player's position, walkto [player] - Make the character walk to a player, bring - Teleports bot to you, rotate [degree] - sets rotation, emote [emote] - uses emote"
+    local controlCommands = "Control Character Commands: jump - Make the character jump, sit - Makes player sit, reset - Reset the player's position, walkto [player] - Make the character walk to a player, bring - Teleports bot to you, rotate [degree] - sets rotation, emote [emote] - uses emote, jumppower [JumpPower] - changes bots jump power, speed [Number] - changes bots speed"
     local chatCommands = "Chat Commands: hotkey [key] - Change the hotkey for commands, say [message] - Make the bot say something in chat, cmds - Show the list of available commands"
     local whitelistCommands = "Whitelist Commands: whitelist [player] - Add a player to the whitelist, whitelist all - Add all players to the whitelist, blacklist [player] - Remove a player from the whitelist, blacklist all - Clear the entire whitelist"
-    local utilityCommands = "Utility Commands: random [minnumber] [maxnumber] - Sends random number, name [Name] - renames bot"
+    local utilityCommands = "Utility Commands: random [minnumber] [maxnumber] - Sends random number, name [Name] - renames bot, rejoin - rejoins bot"
 
     local commands = {
         control = controlCommands,
@@ -171,6 +178,12 @@ local function onMessageReceived(message, sender)
     elseif Command == "name" then
         table.remove(Words, 1)
         Name = table.concat(Words, " ")
+    elseif Command == "rejoin" then
+        rejoinGame()
+    elseif Command == "speed" then
+        humanoid.WalkSpeed = Words[2]
+    elseif Command == "jumppower" then
+        humanoid.JumpPower = Words[2]
     end
 end
 
