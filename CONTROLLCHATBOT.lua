@@ -1,6 +1,6 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TinySkyReally/CONTROLLCHATBOT/refs/heads/main/Version.lua"))()
 
-local version = "0.0.34"
+local version = "0.0.35"
 local Latest
 
 local Hotkey = "."
@@ -68,8 +68,9 @@ end
 
 local function sendCommandList()
     local commands = "Available Commands: hotkey [key] - Change the hotkey for commands, say [message] - Make the bot say something in chat, jump - Make the character jump, bring - Teleports bot to you"
-    local secondcommands = "whitelist [player] - Add a player to the whitelist, whitelist all - Add all players to the whitelist, blacklist [player] - Remove a player from the whitelist"
+    local secondcommands = "whitelist [player] - Add a player to the whitelist, whitelist all - Add all players to the whitelist, blacklist [player] - Remove a player from the whitelist, sit - Makes player sit"
     local thirdcommands = "blacklist all - Clear the entire whitelist, reset - Reset the player's position, walkto [player] - Make the character walk to a player, cmds - Show the list of available commands"
+    local fourthcommands = "random [minnumber] [maxnumber] - Sends random number"
     
     sendMessage(commands)
     sendMessage(secondcommands)
@@ -100,6 +101,7 @@ local function onMessageReceived(message, sender)
     elseif Command == "jump" then
         humanoid.Jump = true
     elseif Command == "whitelist" then
+        if sender ~= LocalPlayer then return end
         if Words[2] == "all" then
             for _, player in ipairs(Players:GetPlayers()) do
                 if not table.find(Whitelist, string.lower(player.Name)) then
@@ -114,6 +116,7 @@ local function onMessageReceived(message, sender)
             end
         end
     elseif Command == "blacklist" then
+        if sender ~= LocalPlayer then return end
         if Words[2] == "all" then
             Whitelist = {}
         else
@@ -137,6 +140,10 @@ local function onMessageReceived(message, sender)
         sendCommandList()
     elseif Command == "bring" then
         character.HumanoidRootPart.CFrame = CFrame.new(sender.Character.HumanoidRootPart.Position)
+    elseif Command == "sit" then
+        humanoid.Sit = true
+    elseif Command == "random" then
+        sendMessage("[Tiny Control Bot]: "..math.random(tonumber(Words[2]), tonumber(Words[3])))
     end
 end
 
