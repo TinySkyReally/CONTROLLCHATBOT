@@ -66,16 +66,21 @@ local function sendMessage(text)
     end
 end
 
-local function sendCommandList()
+local function sendCommandList(number)
     local commands = "Available Commands: hotkey [key] - Change the hotkey for commands, say [message] - Make the bot say something in chat, jump - Make the character jump, bring - Teleports bot to you"
     local secondcommands = "whitelist [player] - Add a player to the whitelist, whitelist all - Add all players to the whitelist, blacklist [player] - Remove a player from the whitelist, sit - Makes player sit"
     local thirdcommands = "blacklist all - Clear the entire whitelist, reset - Reset the player's position, walkto [player] - Make the character walk to a player, cmds - Show the list of available commands"
     local fourthcommands = "random [minnumber] [maxnumber] - Sends random number"
-    
-    sendMessage(commands)
-    sendMessage(secondcommands)
-    sendMessage(thirdcommands)
-    sendMessage(fourthcommands)
+    if number == "1" then
+        sendMessage(commands)
+    elseif number == "2" then
+        sendMessage(secondcommands)
+    elseif number == "3" then
+        sendMessage(thirdcommands)
+    elseif number == "4" then
+        sendMessage(fourthcommands)
+    else
+        sendMessage("[Tiny Control Bot]: pick range from 1 to 4")
 end
 
 local function onMessageReceived(message, sender)
