@@ -1,6 +1,6 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TinySkyReally/CONTROLLCHATBOT/refs/heads/main/Version.lua"))()
 
-local version = "0.0.45"
+local version = "0.0.46"
 local Latest
 
 local Hotkey = "."
@@ -67,7 +67,7 @@ local function sendMessage(text)
 end
 
 local function sendCommandList(pick)
-    local controlCommands = "Control Character Commands: jump - Make the character jump, sit - Makes player sit, reset - Reset the player's position, walkto [player] - Make the character walk to a player, bring - Teleports bot to you"
+    local controlCommands = "Control Character Commands: jump - Make the character jump, sit - Makes player sit, reset - Reset the player's position, walkto [player] - Make the character walk to a player, bring - Teleports bot to you, rotate [degree] - rotates bot"
     local chatCommands = "Chat Commands: hotkey [key] - Change the hotkey for commands, say [message] - Make the bot say something in chat, cmds - Show the list of available commands"
     local whitelistCommands = "Whitelist Commands: whitelist [player] - Add a player to the whitelist, whitelist all - Add all players to the whitelist, blacklist [player] - Remove a player from the whitelist, blacklist all - Clear the entire whitelist"
     local utilityCommands = "Utility Commands: random [minnumber] [maxnumber] - Sends random number"
@@ -158,6 +158,10 @@ local function onMessageReceived(message, sender)
         humanoid.Sit = true
     elseif Command == "random" then
         sendMessage("[Tiny Control Bot]: "..math.random(tonumber(Words[2]), tonumber(Words[3])))
+    elseif Command == "rotate" then
+        local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+        local rotation = CFrame.Angles(0, math.rad(Words[2]), 0)
+        humanoidRootPart.CFrame = humanoidRootPart.CFrame * rotation
     end
 end
 
