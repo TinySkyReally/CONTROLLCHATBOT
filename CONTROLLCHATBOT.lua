@@ -1,5 +1,3 @@
-wait(0.1)
-
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TinySkyReally/CONTROLLCHATBOT/refs/heads/main/Version.lua"))()
 
 local version = "0.0.43"
