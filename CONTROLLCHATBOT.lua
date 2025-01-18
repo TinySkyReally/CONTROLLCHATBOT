@@ -1,4 +1,7 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/TinySkyReally/CONTROLLCHATBOT/refs/heads/main/Version.lua"))()
+
 local version = "0.0.25"
+local Latest
 
 local Hotkey = "."
 local Whitelist = {}
@@ -6,6 +9,12 @@ local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TextChatService = game:GetService("TextChatService")
 local LocalPlayer = Players.LocalPlayer
+
+if LatestVersion == version then
+    Latest = true
+else
+    Latest = false
+end
 
 local function WalkToPart(targetPart)
     local character = LocalPlayer.Character
@@ -139,4 +148,8 @@ else
 end
 
 sendMessage("[Tiny Control Bot]: Chat bot loaded into game!")
-sendMessage("[Tiny Control Bot]: Version: "..version)
+if Latest then
+    sendMessage("[Tiny Control Bot]: Version: "..version.." Latest!")
+else
+    sendMessage("[Tiny Control Bot]: Version: "..version.." Outdated!")
+end
