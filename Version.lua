@@ -1,1 +1,1 @@
-LatestVersion = "0.0.45"
+LatestVersion = "0.0.46"
