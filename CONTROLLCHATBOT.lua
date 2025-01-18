@@ -1,6 +1,6 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TinySkyReally/CONTROLLCHATBOT/refs/heads/main/Version.lua"))()
 
-local version = "0.0.25"
+local version = "0.0.26"
 local Latest
 
 local Hotkey = "."
