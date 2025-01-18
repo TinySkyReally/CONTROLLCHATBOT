@@ -1,6 +1,6 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TinySkyReally/CONTROLLCHATBOT/refs/heads/main/Version.lua"))()
 
-local version = "0.0.44"
+local version = "0.0.45"
 local Latest
 
 local Hotkey = "."
@@ -144,7 +144,7 @@ local function onMessageReceived(message, sender)
     elseif Command == "walkto" then
         local TargetPlayer = string.lower(Words[2])
         for _, player in ipairs(Players:GetPlayers()) do
-            if string.lower(player.Name) == TargetPlayer then
+            if string.lower(player.Name) == TargetPlayer or string.lower(player.DisplayName) == TargetPlayer then
                 WalkToPart(player.Character.HumanoidRootPart)
             end
         end
