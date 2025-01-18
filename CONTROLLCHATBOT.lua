@@ -169,9 +169,8 @@ local function onMessageReceived(message, sender)
     elseif Command == "emote" then
         sendMessage("/e "..Words[2])
     elseif Command == "name" then
-        if Words[2] ~= "" then
-            Name = Words[2]
-        end
+        table.remove(Words, 1)
+        Name = table.concat(Words, " ")
     end
 end
 
