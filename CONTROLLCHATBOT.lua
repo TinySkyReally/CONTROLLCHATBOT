@@ -1,6 +1,6 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TinySkyReally/CONTROLLCHATBOT/refs/heads/main/Version.lua"))()
 
-local version = "0.0.43"
+local version = "0.0.44"
 local Latest
 
 local Hotkey = "."
@@ -72,18 +72,26 @@ local function sendCommandList(pick)
     local whitelistCommands = "Whitelist Commands: whitelist [player] - Add a player to the whitelist, whitelist all - Add all players to the whitelist, blacklist [player] - Remove a player from the whitelist, blacklist all - Clear the entire whitelist"
     local utilityCommands = "Utility Commands: random [minnumber] [maxnumber] - Sends random number"
 
-    if pick == "control" then
-        sendMessage(controlCommands)
-    elseif pick == "chat" then
-        sendMessage(chatCommands)
-    elseif pick == "whitelist" then
-        sendMessage(whitelistCommands)
-    elseif pick == "utility" then
-        sendMessage(utilityCommands)
+    local commands = {
+        control = controlCommands,
+        chat = chatCommands,
+        whitelist = whitelistCommands,
+        utility = utilityCommands,
+    }
+
+    if commands[pick] then
+        local message = commands[pick]
+        while #message > 200 do
+            local chunk = message:sub(1, 200)
+            sendMessage(chunk)
+            message = message:sub(201)
+        end
+        sendMessage(message)
     else
         sendMessage("[Tiny Control Bot]: pick control, chat, whitelist, utility.")
     end
 end
+
 
 local function onMessageReceived(message, sender)
     if sender ~= LocalPlayer and not table.find(Whitelist, sender.Name) then
