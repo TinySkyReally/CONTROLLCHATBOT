@@ -113,10 +113,8 @@ local function onMessageReceived(message, sender)
                 end
             end
         else
-            for _, player in ipairs(Players:GetPlayers()) do
-                if not table.find(Whitelist, string.lower(player.Name)) and player.Name == string.lower(Words[2]) then
-                    table.insert(Whitelist, string.lower(player.Name))
-                end
+            if not table.find(Whitelist, string.lower(player.Name)) then
+                table.insert(Whitelist, string.lower(player.Name))
             end
         end
     elseif Command == "blacklist" then
