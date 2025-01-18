@@ -2,7 +2,6 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/TinySkyReally/CONTROL
 
 local version = "0.0.34"
 local Latest
-local AutoWhitelist = _G.AutoWhitelist
 
 local Hotkey = "."
 local Whitelist = {}
@@ -78,7 +77,7 @@ local function sendCommandList()
 end
 
 local function onMessageReceived(message, sender)
-    if sender ~= LocalPlayer or not table.find(AutoWhitelist, sender.Name) then
+    if sender ~= LocalPlayer then
         if not table.find(Whitelist, sender.Name) then
             return
         end
