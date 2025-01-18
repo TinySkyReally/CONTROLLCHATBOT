@@ -89,6 +89,7 @@ local function sendCommandList(pick)
         sendMessage(message)
     else
         sendMessage("[Tiny Control Bot]: pick control, chat, whitelist, utility.")
+        sendMessage("[Tiny Control Bot]: say .cmds [Your choice]")
     end
 end
 
