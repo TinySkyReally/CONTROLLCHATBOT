@@ -67,7 +67,7 @@ local function sendMessage(text)
 end
 
 local function sendCommandList()
-    local commands = "Available Commands: hotkey [key] - Change the hotkey for commands, say [message] - Make the bot say something in chat, jump - Make the character jump"
+    local commands = "Available Commands: hotkey [key] - Change the hotkey for commands, say [message] - Make the bot say something in chat, jump - Make the character jump, bring - Teleports bot to you"
     local secondcommands = "whitelist [player] - Add a player to the whitelist, whitelist all - Add all players to the whitelist, blacklist [player] - Remove a player from the whitelist"
     local thirdcommands = "blacklist all - Clear the entire whitelist, reset - Reset the player's position, walkto [player] - Make the character walk to a player, cmds - Show the list of available commands"
     
@@ -133,6 +133,8 @@ local function onMessageReceived(message, sender)
         end
     elseif Command == "cmds" then
         sendCommandList()
+    elseif Command == "bring" then
+        character.HumanoidRootPart.CFrame = CFrame.new(sender.Character.HumanoidRootPart.Position)
     end
 end
 
