@@ -10,10 +10,13 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TextChatService = game:GetService("TextChatService")
 local LocalPlayer = Players.LocalPlayer
 
+print("Your version: "..version)
 if LatestVersion == version then
     Latest = true
+    print("Latest")
 else
     Latest = false
+    print("Outdated")
 end
 
 local function sendCommandList()
