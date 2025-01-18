@@ -83,6 +83,7 @@ local function sendCommandList(pick)
         sendMessage(utilityCommands)
     else
         sendMessage("[Tiny Control Bot]: pick control, chat, whitelist, utility.")
+    end
 end
 
 local function onMessageReceived(message, sender)
