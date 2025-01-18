@@ -78,14 +78,14 @@ local function onMessageReceived(message, sender)
     elseif Command == "whitelist" then
         if playerName == "all" then
             for _, player in ipairs(Players:GetPlayers()) do
-                if not table.find(Whitelist, player.Name) then
-                    table.insert(Whitelist, player.Name)
+                if not table.find(Whitelist, string.lower(player.Name)) then
+                    table.insert(Whitelist, string.lower(player.Name))
                 end
             end
         else
             for _, player in ipairs(Players:GetPlayers()) do
-                if not table.find(Whitelist, player.Name) and player.Name == string.lower(Words[2]) then
-                    table.insert(Whitelist, player.Name)
+                if not table.find(Whitelist, string.lower(player.Name)) and player.Name == string.lower(Words[2]) then
+                    table.insert(Whitelist, string.lower(player.Name))
                 end
             end
         end
