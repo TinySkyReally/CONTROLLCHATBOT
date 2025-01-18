@@ -103,25 +103,19 @@ local function onMessageReceived(message, sender)
         if sender ~= LocalPlayer then return end
         if Words[2] == "all" then
             for _, player in ipairs(Players:GetPlayers()) do
-                if not table.find(Whitelist, string.lower(player.Name)) then
-                    table.insert(Whitelist, string.lower(player.Name))
-                end
+                table.insert(Whitelist, string.lower(player.Name))
             end
             print("Whitelist:", table.concat(Whitelist, ", "))
         else
-            if not table.find(Whitelist, string.lower(player.Name)) then
-                table.insert(Whitelist, string.lower(player.Name))
-                print("Whitelist:", table.concat(Whitelist, ", "))
-            end
+            table.insert(Whitelist, string.lower(player.Name))
+            print("Whitelist:", table.concat(Whitelist, ", "))
         end
     elseif Command == "blacklist" then
         if sender ~= LocalPlayer then return end
         if Words[2] == "all" then
             Whitelist = {}
         else
-            if table.find(Whitelist, string.lower(Words[2])) then
-                table.remove(Whitelist, getIndexOfItem(Whitelist, string.lower(Words[2])))
-            end
+            table.remove(Whitelist, getIndexOfItem(Whitelist, string.lower(Words[2])))
         end
     elseif Command == "reset" then
         local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
